@@ -34,13 +34,13 @@ router = routers.DefaultRouter()
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
-        'users': reverse('user-list', request=request, format=format),
-        'profiles': reverse('profile-list', request=request, format=format),
-        'activities': reverse('activity-list', request=request, format=format),
-        'workouts': reverse('workout-list', request=request, format=format),
-        'teams': reverse('team-list', request=request, format=format),
-        'memberships': reverse('membership-list', request=request, format=format),
-        'leaderboards': reverse('leaderboard-list', request=request, format=format),
+        'users': base_url + reverse('user-list', request=request, format=format),
+        'profiles': base_url + reverse('profile-list', request=request, format=format),
+        'activities': base_url + reverse('activity-list', request=request, format=format),
+        'workouts': base_url + reverse('workout-list', request=request, format=format),
+        'teams': base_url + reverse('team-list', request=request, format=format),
+        'memberships': base_url + reverse('membership-list', request=request, format=format),
+        'leaderboards': base_url + reverse('leaderboard-list', request=request, format=format),
     })
 
 urlpatterns = [
