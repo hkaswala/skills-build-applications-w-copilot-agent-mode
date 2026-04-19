@@ -5,6 +5,7 @@ from . import views
 router = DefaultRouter()
 router.register(r'teams', views.TeamViewSet)
 router.register(r'memberships', views.MembershipViewSet)
+router.register(r'leaderboards', views.LeaderboardViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

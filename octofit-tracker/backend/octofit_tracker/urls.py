@@ -34,10 +34,13 @@ router = routers.DefaultRouter()
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
+        'users': reverse('user-list', request=request, format=format),
         'profiles': reverse('profile-list', request=request, format=format),
         'activities': reverse('activity-list', request=request, format=format),
+        'workouts': reverse('workout-list', request=request, format=format),
         'teams': reverse('team-list', request=request, format=format),
-        # Add more as apps are created
+        'memberships': reverse('membership-list', request=request, format=format),
+        'leaderboards': reverse('leaderboard-list', request=request, format=format),
     })
 
 urlpatterns = [
@@ -47,6 +50,6 @@ urlpatterns = [
     path('api/accounts/', include('accounts.urls')),
     path('api/activities/', include('activities.urls')),
     path('api/teams/', include('teams.urls')),
-    path('api/', api_root, name='api-root'),
+    path('', api_root, name='api-root'),
     path('api/', include(router.urls)),
 ]

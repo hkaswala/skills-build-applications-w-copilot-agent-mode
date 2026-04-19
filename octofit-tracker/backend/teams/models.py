@@ -20,3 +20,16 @@ class Membership(models.Model):
 
     def __str__(self):
         return f'{self.user.username} in {self.team.name}'
+
+class Leaderboard(models.Model):
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='leaderboards')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    points = models.IntegerField(default=0)
+    rank = models.IntegerField(null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('team', 'user')
+
+    def __str__(self):
+        return f'{self.user.username} in {self.team.name} - {self.points} points'

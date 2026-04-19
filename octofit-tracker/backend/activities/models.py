@@ -12,3 +12,14 @@ class Activity(models.Model):
 
     def __str__(self):
         return f'{self.user.username} - {self.activity_type} on {self.date}'
+
+class Workout(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    exercises = models.JSONField()  # list of exercises
+    duration = models.IntegerField(null=True, blank=True)  # estimated duration in minutes
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user.username} - {self.name}'
